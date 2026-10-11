@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  harvtrack-api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - HT_DB=postgresql://postgres:${HT_DB_PASSWORD:?set HT_DB_PASSWORD in .env}@db-primary:5432/harvtrack
+      - HT_SECRET=${HT_SECRET:?set HT_SECRET in .env}
+    depends_on:
+      db-primary:
+        condition: service_healthy
+
+  db-primary:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: harvtrack
+      POSTGRES_PASSWORD: ${HT_DB_PASSWORD:?set HT_DB_PASSWORD in .env}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d harvtrack"]
+      interval: 5s
+      retries: 10
+    ports:
+      - "5432:5432"
+
+  # Standby instance provisioned for future use. Streaming replication from
+  # db-primary is NOT configured yet, so this does not provide failover.
+  db-replica:
+    image: postgres:14
+    environment:
+      POSTGRES_DB: harvtrack
+      POSTGRES_PASSWORD: ${HT_DB_PASSWORD:?set HT_DB_PASSWORD in .env}
+    ports:
+      - "5433:5432"

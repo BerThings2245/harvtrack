@@ -1,0 +1,8 @@
+.git
+.github
+__pycache__
+*.pyc
+harvtrack.db
+instance
+test_harvtrack_api.py
+.env

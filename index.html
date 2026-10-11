@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HarvTrack — Smart Farm Management</title>
+<meta name="theme-color" content="#166534">
+<meta name="description" content="HarvTrack - smart livestock and harvest management for Titular Farm.">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" type="image/png" href="/img/icon-192.png">
+<link rel="apple-touch-icon" href="/img/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<!-- Premium Material Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,600,1,0" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="landing">
+  <div class="land-nav">
+    <div class="brandmark"><span class="material-symbols-rounded leaf-icon">eco</span> HarvTrack</div>
+    <button id="landLoginBtn">Log in</button>
+  </div>
+  <div class="hero">
+    <div class="hero-text-wrap">
+      <h1>Run your whole farm from one place.</h1>
+      <p>HarvTrack connects livestock, crops, daily tasks, inventory, buyer orders and reports into a single smart platform</p>
+      <div class="cta-row">
+        <button class="btn btn-primary" id="heroLoginBtn">Log in to HarvTrack</button>
+        <button class="btn btn-outline" id="heroRegisterBtn">Register as buyer</button>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 200 160" fill="none"><path d="M100 20c-30 20-30 60-30 60s40 5 60-25c15-22 5-45 5-45s-15 0-35 10z" fill="#10b981"/><path d="M100 150V80" stroke="#fcd34d" stroke-width="4" stroke-linecap="round"/><circle cx="55" cy="120" r="14" fill="#fcd34d"/><circle cx="145" cy="115" r="18" fill="#1e293b"/><circle cx="90" cy="135" r="10" fill="#f8fafc"/></svg>
+    </div>
+  </div>
+</div>
+
+<div class="auth-wrap hidden" id="authWrap">
+  <div class="auth-card" style="position:relative">
+    <button class="close-x" id="authClose"><span class="material-symbols-rounded">close</span></button>
+    <div id="loginView">
+      <h2>Welcome back</h2>
+      <p class="sub">Log in to your HarvTrack account.</p>
+      <div class="role-pick" id="loginRolePick">
+        <button data-role="owner" class="active">Owner</button>
+        <button data-role="farmhand">Farmhand</button>
+        <button data-role="buyer">Buyer</button>
+      </div>
+      <div class="field"><label>Email</label><input id="loginEmail" type="email" placeholder="you@example.com"></div>
+      <div class="field pass-field"><label>Password</label>
+        <div class="pass-wrap"><input id="loginPass" type="password" placeholder="••••••••"><button type="button" class="pass-toggle" id="loginPassToggle">Show</button></div>
+      </div>
+      <div class="err hidden" id="loginErr"></div>
+      <button class="btn btn-primary" style="width:100%" id="loginSubmit">Log in</button>
+      <p style="text-align:center; font-size:14px; margin-top:20px; color:var(--muted)">New buyer? <a id="toRegister" style="color:var(--forest);font-weight:700;cursor:pointer;text-decoration:underline">Create an account</a></p>
+    </div>
+    <div id="registerView" class="hidden">
+      <h2>Create your buyer account</h2>
+      <p class="sub">Order fresh farm products directly from Titular Farm.</p>
+      <div class="field"><label>Full name</label><input id="regName" placeholder="Juan Dela Cruz"></div>
+      <div class="field"><label>Email</label><input id="regEmail" type="email" placeholder="you@example.com"></div>
+      <div class="field"><label>Contact number</label><input id="regPhone" placeholder="09XX XXX XXXX" maxlength="13"></div>
+      <div class="field pass-field"><label>Password</label>
+        <div class="pass-wrap"><input id="regPass" type="password" placeholder="Minimum 8 characters"><button type="button" class="pass-toggle" id="regPassToggle">Show</button></div>
+      </div>
+      <div class="err hidden" id="regErr"></div>
+      <button class="btn btn-primary" style="width:100%" id="regSubmit">Register</button>
+      <p style="text-align:center; font-size:14px; margin-top:20px; color:var(--muted)">Already have an account? <a id="toLogin" style="color:var(--forest);font-weight:700;cursor:pointer;text-decoration:underline">Log in</a></p>
+    </div>
+  </div>
+</div>
+
+<div id="app">
+<div class="shell">
+  <div class="sidebar" id="sidebar"></div>
+  <div class="main">
+    <div class="topbar">
+      <h1 id="pageTitle">Dashboard</h1>
+      <div class="pillrow">
+        <button class="bell" id="bellBtn">
+          <span class="material-symbols-rounded">notifications</span>
+          <span class="dot hidden" id="bellDot">0</span>
+        </button>
+        <span class="whoami">Signed in as <b id="whoName"></b></span>
+        <button class="btn-sm" id="logoutBtn">Log out</button>
+      </div>
+    </div>
+    <div id="pageBody"></div>
+  </div>
+</div>
+<div class="bottomnav" id="bottomnav"></div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+<script src="js/app.js"></script>
+</body>
+</html>
